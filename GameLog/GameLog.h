@@ -32,6 +32,8 @@ public:
     int getHour() const;
     int getMimute() const;
     int getSecond() const;
+    // 转化为秒
+    int toSeconds() const;
 };
 std::ostream &operator<<(std::ostream &out, const Time &time);
 

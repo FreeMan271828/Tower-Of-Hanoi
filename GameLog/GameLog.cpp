@@ -102,6 +102,11 @@ int Time::getSecond() const
     return this->second;
 }
 
+int Time::toSeconds() const
+{
+    return this->hour * 3600 + this->minute * 60 + this->second;
+}
+
 std::ostream &operator<<(std::ostream &out, const Time &time)
 {
     out << '\r' << time.hour << ":" << time.minute << ":" << time.second;
@@ -111,10 +116,8 @@ std::ostream &operator<<(std::ostream &out, const Time &time)
 std::ostream &operator<<(std::ostream &out, const GameRecord &gameRecord)
 {
     out << "\033[36m";
-    out << "The steps is: " << gameRecord.getSteps() << '\n';
-    out << "The time is: ";
-    gameRecord.showTime();
-    out << '\n';
+    out << "你的步数是 " << gameRecord.getSteps() << '\n';
+    out << "你的时间是" << gameRecord.getHour() << ":" << gameRecord.getMimute() << ":" << gameRecord.getSecond();
     out << "\033[0m";
     return out;
 }

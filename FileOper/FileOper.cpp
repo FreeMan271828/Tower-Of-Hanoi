@@ -5,6 +5,8 @@ std::string FileOper::tempStorePath =
     R"(D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Data\\Last(Monent))";
 std::string FileOper::historyPath =
     R"(D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Data\\History)";
+std::string FileOper::bestDataPath =
+    R"(D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Data\\BestRecord)";
 /*Last(Moment)的存储方式
     1. 最大盘子数
     2. 塔1的各个盘子长度
@@ -64,5 +66,19 @@ void FileOper::preserveInWin(GameRecord gameRecord, int NumOfPlate)
             fout << '\n';
             fout << NumOfPlate << " " << gameRecord.getHour() << ' ' << gameRecord.getMimute() << ' ' << gameRecord.getSecond() << ' ' << gameRecord.getSteps();
         }
+    }
+}
+
+void FileOper::preserveInBest(GameRecord gameRecord, int NumOfPlate)
+{
+    std::string nowHistoryPath = bestDataPath + "/" + std::to_string(NumOfPlate);
+    std::ofstream fout(nowHistoryPath);
+    if (fout.is_open() == false)
+    {
+        std::cout << "打开 " << nowHistoryPath << " 失败" << '\n';
+    }
+    else
+    {
+        fout << NumOfPlate << " " << gameRecord.getHour() << ' ' << gameRecord.getMimute() << ' ' << gameRecord.getSecond() << ' ' << gameRecord.getSteps();
     }
 }

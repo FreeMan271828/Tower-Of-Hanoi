@@ -164,8 +164,10 @@ void Game::demoGame()
     for (int i = 0; i < steps.size(); i++)
     {
         // 输出记录
-        std::cout << "Record:" << '\n'
-                  << gameRecord << '\n';
+        std::cout << "\033[36m"
+                  << "你的步数是："
+                  << gameRecord.getSteps() << '\n'
+                  << "\033[0m";
         sleep(1);
         int a, b;
         a = steps[i].begin;
@@ -205,14 +207,16 @@ void Game::getHistory(std::string path)
             {
                 std::string::size_type iPos = filePath.find_last_of('\\') + 1;
                 std::string filename = filePath.substr(iPos, filePath.length() - iPos);
-                std::cout << filename << "\n";
+                std::cout << "\033[34m"
+                          << "在难度" << filename << "\033[0m"
+                          << "\n";
                 std::string buffer;
                 int cnt = 1;
                 while (std::getline(fin, buffer))
                 {
-                    std::cout << "The " << cnt << " record is below:\n";
-                    std::cout << "The time is: " << buffer[2] << ":" << buffer[4] << ":" << buffer[6] << "\n";
-                    std::cout << "The steps is: " << buffer[8] << "\n\n";
+                    std::cout << "第" << cnt << "条记录如下\n";
+                    std::cout << "你的步数是：" << buffer[8] << "\n";
+                    std::cout << "你的耗时是：" << buffer[2] << ":" << buffer[4] << ":" << buffer[6] << "\n\n";
                     cnt++;
                 }
             }
@@ -239,8 +243,10 @@ void Game::playGame(std::vector<Tower> Towers, GameRecord gameRecord, int NumOfP
     std::cout.flush();
     system("cls");
     Tower::render(Towers, 2 * NumOfPlate + 1, NumOfPlate);
-    std::cout << "Record:" << '\n'
-              << gameRecord << '\n';
+    std::cout << "\033[36m"
+              << "你的步数是："
+              << gameRecord.getSteps() << '\n'
+              << "\033[0m";
     // 进行游戏
     auto start = std::chrono::steady_clock::now();
     while (true)
@@ -312,7 +318,10 @@ void Game::playGame(std::vector<Tower> Towers, GameRecord gameRecord, int NumOfP
         // 设置运行时间
         gameRecord.setTime(seconds);
         // 输出记录
-        std::cout << gameRecord << '\n';
+        std::cout << "\033[36m"
+                  << "你的步数是："
+                  << gameRecord.getSteps() << '\n'
+                  << "\033[0m";
         // 该次移动失败，即把大的盘子放在小的盘子上
         if (ret == false)
         {
@@ -335,9 +344,9 @@ void Game::OutputPrompt()
 {
     // 该句输出为绿色
     std::cout << "\033[32m"
-              << "If you want to quit, press double zero"
+              << "如果你想要返回，按0 0"
               << "\033[0m" << '\n';
-    std::cout << "Please move from tower A to tower B: ";
+    std::cout << "请将一个盘子从一个塔到另一个塔： ";
 }
 
 void Game::HoldFile(std::vector<Tower> Towers, GameRecord gameRecord, int NumOfPlate)
@@ -355,7 +364,7 @@ void Game::HoldFile(std::vector<Tower> Towers, GameRecord gameRecord, int NumOfP
     for (int i = 2; i > 0; i--)
     {
         std::cout << "\033[32m"
-                  << "\rReturn to main menu " << i;
+                  << "\r即将返回主菜单 " << i;
         sleep(1);
     }
     std::cout << "\033[0m";
@@ -367,17 +376,28 @@ void Game::Win(GameRecord gameRecord, int NumOfPlate)
     //! 清屏
     std::cout.flush();
     system("cls");
+    // 输出胜利语句
     this->PreserveFile(gameRecord, NumOfPlate);
     std::cout << "\n"
               << "\033[33m"
-              << "Congratulation,You Win" << '\n'
+              << "恭喜！你赢了" << '\n'
               << '\n'
-              << "Your record is: " << '\n'
-              << gameRecord;
+              << "你的记录是: " << '\n'
+              << gameRecord << "\n\n";
 
+    // 输出最佳历史记录
+    this->outputBestHistory(NumOfPlate);
+    std::cout << "是否更换最佳历史记录?[Y/n]\n";
+    // 是否更换最佳历史记录
+    char ch;
+    std::cin >> ch;
+    if (ch == 'y' || ch == 'Y')
+    {
+        FileOper::preserveInBest(gameRecord, NumOfPlate);
+    }
     for (int i = 3; i > 0; i--)
     {
-        std::cout << "\rReturn to main menu " << i;
+        std::cout << "\r即将返回主菜单" << i;
         sleep(1);
     }
     std::cout << "\033[0m";
@@ -388,6 +408,25 @@ void Game::PreserveFile(GameRecord gameRecord, int NumOfPlate)
     FileOper::preserveInWin(gameRecord, NumOfPlate);
 }
 
+void Game::outputBestHistory(int NumOfPlate)
+{
+    std::string path = FileOper::bestDataPath + "\\" + std::to_string(NumOfPlate);
+    std::ifstream fin(path);
+    std::string buffer;
+    while (getline(fin, buffer))
+    {
+        std::vector<std::string> strings = this->splitStringBySpace(buffer);
+        int plateNum = std::stoi(strings[0]);
+        int hour = std::stoi(strings[1]);
+        int minute = std::stoi(strings[2]);
+        int second = std::stoi(strings[3]);
+        int steps = std::stoi(strings[4]);
+        std::cout << "在难度为" << plateNum << "下，你的最佳历史记录为\n"
+                  << "步数  " << steps << '\n'
+                  << "用时  " << hour << ":" << minute << ":" << second << '\n';
+    }
+}
+
 void Game::Fail()
 {
     // 该句输出为红色
@@ -396,7 +435,7 @@ void Game::Fail()
               << "\033[0m";
     for (int i = 2; i > 0; i--)
     {
-        std::cout << "\rReturn to main menu " << i;
+        std::cout << "\r即将返回主菜单" << i;
         sleep(1);
     }
 }
@@ -405,9 +444,9 @@ void Game::noPlate(int a)
 {
     // 该句为红色
     std::cout << "\033[31m"
-              << "The tower" << a << " has no plate, press again"
+              << "塔" << a << "没有盘子，再试一下"
               << "\033[0m" << '\n';
-    std::cout << "Please move from tower A to tower B: ";
+    std::cout << "请将一个盘子从一个塔到另一个塔： ";
 }
 
 void Game::illegalInput()
@@ -417,16 +456,16 @@ void Game::illegalInput()
     std::cout << "\033[31m"
               << "Your input is illegal, press again"
               << "\033[0m" << '\n';
-    std::cout << "Please move from tower A to tower B: ";
+    std::cout << "请将一个盘子从一个塔到另一个塔： ";
 }
 
 char Game::wrongMove(int b)
 { // 该句输出为红色
     std::cout << "\033[31m"
-              << "You're putting a big plate on a small plate in tower " << b << '\n'
+              << "你把一个大盘子放在一个小盘子上啦" << b << '\n'
               << '\n'
-              << "Try Again[Y/N]" << '\n'
-              << "If you press N, you will fail and return to main menu" << '\n'
+              << "是否重新尝试[Y/N]" << '\n'
+              << "注意!!!如果不重新尝试，你会直接失败" << '\n'
               << "\033[0m";
     char c; // 输入Y/N
     std::cin >> c;
