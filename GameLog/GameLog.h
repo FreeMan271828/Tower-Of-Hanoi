@@ -22,7 +22,7 @@ public:
     // 后置++重载，使(class)Time++成功
     Time &operator++(int);
     // 根据传入秒数格式化时间
-    Time &setTime(int num);
+    void setTime(int num);
     void setTime(int hour, int minute, int second);
     // 展示时间
     void showTime() const;

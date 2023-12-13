@@ -15,29 +15,19 @@ private:
     std::vector<std::vector<char>> storage;
 
 public:
-    // Getter
-    int getWidth() const;
-    int getHeight() const;
-
-public:
-    // Constructor
     MainMenu(int width = 52, int height = 10);
-
-private:
-    // 设置主页面和新游戏页面，在外部无法调用
-    void initMenu();
-    // TODO:该页面需要优化
-    void setMainMenu();
-    // TODO:该页面需要优化
-    void setNewGameMenu();
-    void setRuleMenu();
-
-public:
-    // 展示页面
-    void showMenu();
     void showMainMunu();
     void showNewGameMenu();
     void showRuleMenu();
+
+private:
+    int getWidth() const;
+    int getHeight() const;
+    void showMenu();
+    void initMenu();
+    void setMainMenu();
+    void setNewGameMenu();
+    void setRuleMenu();
 };
 
 #endif

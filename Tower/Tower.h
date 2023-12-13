@@ -34,6 +34,7 @@ public:
     void setPlatesLength(std::vector<int> &platesLength);
     // 返回该塔所有盘子长度
     std::vector<int> getPlatesLength() const;
+
     // 判断当前塔是否正确
     bool isRight();
     // a移动到b，返回true表示移动成功，否则失败

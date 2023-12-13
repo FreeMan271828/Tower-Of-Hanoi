@@ -59,7 +59,7 @@ Time &Time::operator++(int)
     return *copyTime;
 }
 
-Time &Time::setTime(int num)
+void Time::setTime(int num)
 {
     this->second = num;
     if (this->second >= 60)
@@ -72,7 +72,6 @@ Time &Time::setTime(int num)
         this->minute %= 60;
         this->hour++;
     }
-    return *this;
 }
 
 void Time::setTime(int hour, int minute, int second)
