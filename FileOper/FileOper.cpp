@@ -2,11 +2,11 @@
 #include <fstream>
 
 std::string FileOper::tempStorePath =
-    R"(D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Data\\Last(Monent))";
+    R"(D:\\DevelopTools\\Code\\Cpp\\Tower-Of-Hanoi\\Data\\Last(Monent))";
 std::string FileOper::historyPath =
-    R"(D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Data\\History)";
+    R"(D:\\DevelopTools\\Code\\Cpp\\Tower-Of-Hanoi\\Data\\History)";
 std::string FileOper::bestDataPath =
-    R"(D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Data\\BestRecord)";
+    R"(D:\\DevelopTools\\Code\\Cpp\\Tower-Of-Hanoi\\Data\\BestRecord)";
 /*Last(Moment)的存储方式
     1. 最大盘子数
     2. 塔1的各个盘子长度

@@ -5,10 +5,10 @@
       "name": "(Windows) 启动",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi\\Tower_Of_Hanoi.exe",
+      "program": "D:\\DevelopTools\\Code\\Cpp\\Tower-Of-Hanoi\\Tower-Of-Hanoi.exe",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "D:\\DevelopTools\\Code\\Cpp\\Tower_Of_Hanoi",
+      "cwd": "D:\\DevelopTools\\Code\\Cpp\\Tower-Of-Hanoi",
       "environment": [],
       "console": "externalTerminal"
     },
@@ -19,8 +19,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/DevelopTools/Code/Cpp/Tower_Of_Hanoi",
-      "program": "d:/DevelopTools/Code/Cpp/Tower_Of_Hanoi/build/Debug/outDebug",
+      "cwd": "d:/DevelopTools/Code/Cpp/Tower-Of-Hanoi",
+      "program": "d:/DevelopTools/Code/Cpp/Tower-Of-Hanoi/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
