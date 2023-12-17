@@ -1,0 +1,43 @@
+Date : 2023-12-17 22:31:04
+Directory : d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi
+Total : 12 files,  1061 codes, 128 comments, 104 blanks, all 1293 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         11 |      1,057 |        128 |        100 |      1,285 |
+| Markdown |          1 |          4 |          0 |          4 |          8 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                             |         12 |      1,061 |        128 |        104 |      1,293 |
+| . (Files)                                                     |          2 |         11 |          0 |          7 |         18 |
+| FileOper                                                      |          2 |         84 |         21 |          7 |        112 |
+| GameLog                                                       |          2 |        146 |         16 |         25 |        187 |
+| MainMenu                                                      |          2 |        175 |          5 |         17 |        197 |
+| PlayGame                                                      |          2 |        429 |         60 |         26 |        515 |
+| Tower                                                         |          2 |        216 |         26 |         22 |        264 |
++---------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                      | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\FileOper\FileOper.cpp | C++      |         66 |         15 |          4 |         85 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\FileOper\FileOper.h   | C++      |         18 |          6 |          3 |         27 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\GameLog\GameLog.cpp   | C++      |        104 |          0 |         19 |        123 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\GameLog\GameLog.h     | C++      |         42 |         16 |          6 |         64 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\MainMenu\MainMenu.cpp | C++      |        150 |          3 |         11 |        164 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\MainMenu\MainMenu.h   | C++      |         25 |          2 |          6 |         33 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\PlayGame\PlayGame.cpp | C++      |        399 |         52 |         23 |        474 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\PlayGame\PlayGame.h   | C++      |         30 |          8 |          3 |         41 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\README.md             | Markdown |          4 |          0 |          4 |          8 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\Tower\Tower.cpp       | C++      |        182 |         17 |         14 |        213 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\Tower\Tower.h         | C++      |         34 |          9 |          8 |         51 |
+| d:\DevelopTools\Code\Cpp\Tower-Of-Hanoi\main.cpp              | C++      |          7 |          0 |          3 |         10 |
+| Total                                                         |          |      1,061 |        128 |        104 |      1,293 |
++---------------------------------------------------------------+----------+------------+------------+------------+------------+

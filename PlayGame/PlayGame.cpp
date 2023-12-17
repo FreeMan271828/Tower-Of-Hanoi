@@ -215,18 +215,51 @@ void Game::getHistory(std::string path)
                 while (std::getline(fin, buffer))
                 {
                     std::cout << "第" << cnt << "条记录如下\n";
-                    std::cout << "你的步数是：" << buffer[8] << "\n";
-                    std::cout << "你的耗时是：" << buffer[2] << ":" << buffer[4] << ":" << buffer[6] << "\n\n";
+                    std::vector<std::string> strings = splitStringBySpace(buffer);
+                    int hour = std::stoi(strings[1]);
+                    int minute = std::stoi(strings[2]);
+                    int second = std::stoi(strings[3]);
+                    int step = std::stoi(strings[4]);
+                    std::cout << "时间：" << hour << ":" << minute << ":" << second << "\n";
+                    std::cout << "步数：" << step << "\n";
+                    std::cout << "-------------------------------------------------------------------------------\n";
                     cnt++;
                 }
             }
 
         } while (_findnext(hFile, &fileinfo) == 0);
         _findclose(hFile);
-    }
-    char c = fgetchar();
-}
+        std::cout << "按下clear清除历史记录" << '\n';
+        std::cout << "按下任意其他键退出" << '\n';
+        std::string str;
+        std::cin >> str;
+        if (str == "clear")
+        {
+            if ((hFile = _findfirst(p.assign(path).append("\\\\*").c_str(), &fileinfo)) != -1)
+            {
+                do
+                {
+                    std::string filePath = p.assign(path).append("\\\\").append(fileinfo.name);
+                    files.push_back(filePath);
 
+                    std::ifstream fin(filePath);
+                    if (fin.is_open())
+                    {
+                        std::string::size_type iPos = filePath.find_last_of('\\') + 1;
+                        std::string filename = filePath.substr(iPos, filePath.length() - iPos);
+                        // 清除文件
+                        fin.close();
+                        remove(filePath.c_str());
+                        std::cout << "删除文件" << filename << "成功"
+                                  << "\n";
+                    }
+
+                } while (_findnext(hFile, &fileinfo) == 0);
+            }
+        }
+        char c = fgetchar();
+    }
+}
 std::vector<std::string> Game::splitStringBySpace(const std::string &str)
 {
     std::vector<std::string> result;

@@ -8,6 +8,7 @@
 #include "../Tower/Tower.h"
 #include "../FileOper/FileOper.h"
 #include <conio.h>
+#include <cstdio>
 class Game
 {
 public:
